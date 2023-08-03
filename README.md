@@ -21,5 +21,6 @@
 1. version 0.0.1  最初版本
     
 
-2. version 0.0.2  当前版本： 新增处理饼图的工具类
-    
+2. version 0.0.2  当前版本： 新增处理饼图的工具类</p>
+     饼图效果：
+    ![img](https://github.com/pf666nb/Ygo_Data_Tool/blob/master/src/main/resources/1691056277278_%E9%A5%BC%E5%9B%BE.jpeg?raw=true)
