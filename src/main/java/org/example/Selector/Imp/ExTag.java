@@ -40,13 +40,13 @@ public class ExTag implements TagSelector {
     }
 
     @Override
-    public void getElements(HtmlPage page) {
+    public List<DataBean> getElements(HtmlPage page) {
         Document document = Jsoup.parse(page.asXml());
         List<Element> elementList = document.getElementById(TAG).getElementsByTag(TR);//获取元素节点等
         for (int i = 1; i < elementList.size(); i++) {
             doTrParser(elementList.get(i));
         }
-
+        return null;
     }
 
     private void doTrParser(Element element){

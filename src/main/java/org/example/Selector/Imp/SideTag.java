@@ -1,5 +1,6 @@
 package org.example.Selector.Imp;
 
+import org.example.Bean.DataBean;
 import org.example.CardEnum.CardType;
 import org.example.Selector.TagSelector;
 import org.example.Utils.GetBeanUtil;
@@ -39,13 +40,13 @@ public class SideTag implements TagSelector {
     }
 
     @Override
-    public void getElements(HtmlPage page) {
+    public List<DataBean> getElements(HtmlPage page) {
         Document document = Jsoup.parse(page.asXml());
         List<Element> elementList = document.getElementById(TAG).getElementsByTag(TR);//获取元素节点等
         for (int i = 1; i < elementList.size(); i++) {
             doTrParser(elementList.get(i));
         }
-
+        return null;
     }
 
     private void doTrParser(Element element){

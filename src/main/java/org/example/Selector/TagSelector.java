@@ -1,5 +1,6 @@
 package org.example.Selector;
 
+import org.example.Bean.DataBean;
 import org.htmlunit.html.HtmlPage;
 import org.jsoup.nodes.Element;
 
@@ -9,5 +10,5 @@ public interface TagSelector {
 
     void SelectTag(HtmlPage page);
 
-    void getElements(HtmlPage page);
+    List<DataBean> getElements(HtmlPage page);
 }
