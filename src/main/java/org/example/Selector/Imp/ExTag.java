@@ -12,6 +12,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,18 +42,19 @@ public class ExTag implements TagSelector {
 
     @Override
     public List<DataBean> getElements(HtmlPage page) {
+        ArrayList<DataBean> list = new ArrayList<>();
         Document document = Jsoup.parse(page.asXml());
         List<Element> elementList = document.getElementById(TAG).getElementsByTag(TR);//获取元素节点等
         for (int i = 1; i < elementList.size(); i++) {
-            doTrParser(elementList.get(i));
+          list.add(  doTrParser(elementList.get(i)));
         }
-        return null;
+        return list;
     }
 
-    private void doTrParser(Element element){
+    private DataBean doTrParser(Element element){
         Elements elementsByTag = element.getElementsByTag(TD);
-         DataBean build = GetBeanUtil.build(elementsByTag, CardType.EX);
-        System.out.println(build);
+        return  GetBeanUtil.build(elementsByTag, CardType.MONSTER);
+
 
 
     }
