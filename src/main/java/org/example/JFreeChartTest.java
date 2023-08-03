@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.Bean.DataBean;
 import org.example.Selector.Imp.DeckTag;
+import org.example.Selector.Imp.MonsterTag;
 import org.example.Utils.GeneratePieChartUtil;
 import org.example.Utils.JFreeChartUtil;
 import org.htmlunit.BrowserVersion;
@@ -33,10 +34,7 @@ public class JFreeChartTest {
         testPie();
 
     }
-    public static void removeFrom (List list, int pos ){
-        List subList = list.subList(pos,list.size());
-        list.remove(subList);
-    }
+
     /**
      * 生成饼图
      */
@@ -60,7 +58,7 @@ public class JFreeChartTest {
         }
 
         webClient.waitForBackgroundJavaScript(5000);
-        DeckTag deckTag = new DeckTag();
+        MonsterTag deckTag = new MonsterTag();
         deckTag.SelectTag(page);
         List<DataBean> elements = deckTag.getElements(page);
         List<String> use = elements.stream().map(DataBean::getAttribute2).collect(Collectors.toList());
@@ -70,13 +68,11 @@ public class JFreeChartTest {
             other -= Double.parseDouble(use.get(i).substring(0,use.get(i).length()-1));
         }
         List<Object> collect = use.stream().map(s -> s.substring(0, s.length() - 1)).collect(Collectors.toList());
-        JFreeChartTest.removeFrom(collect,9);
+
          List<Object> objects = collect.subList(0, 8);
          List<String> strings = name.subList(0, 8);
         objects.add(other);
         strings.add("其他");
-
-
         List<Color> legendColorList = new ArrayList<>(Arrays.asList(Color.YELLOW, Color.GRAY, Color.green, Color.cyan, Color.ORANGE));
         //偏离百分比数据
         List<Double> explodePercentList = new ArrayList<>(Arrays.asList(0.1, 0.1, 0.1, 0.1, 0.1));
