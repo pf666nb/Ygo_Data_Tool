@@ -1,7 +1,10 @@
 package org.example.Selector.Imp;
 
 import org.apache.http.util.Asserts;
+import org.example.Bean.DataBean;
+import org.example.CardEnum.CardType;
 import org.example.Selector.TagSelector;
+import org.example.Utils.GetBeanUtil;
 import org.htmlunit.html.DomElement;
 import org.htmlunit.html.HtmlPage;
 import org.jsoup.Jsoup;
@@ -47,15 +50,12 @@ public class DeckTag implements TagSelector {
 
     }
 
-    private void doTrParser(Element element){
+    private DataBean doTrParser(Element element){
         Elements elementsByTag = element.getElementsByTag(TD);
-        System.out.println("排名:"+elementsByTag.get(0).text());
-        System.out.println("卡组:"+elementsByTag.get(1).getElementsByTag("a").text());
-        System.out.println("使用数:"+elementsByTag.get(2).text());
-        System.out.println("使用率:"+elementsByTag.get(3).text());
-        System.out.println("热门标签:"+elementsByTag.get(4).text());
 
-
+        DataBean build = GetBeanUtil.build(elementsByTag, CardType.DECK);
+        System.out.println(build);
+        return build;
     }
 
 }

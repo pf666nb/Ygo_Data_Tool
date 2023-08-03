@@ -1,6 +1,8 @@
 package org.example.Selector.Imp;
 
+import org.example.CardEnum.CardType;
 import org.example.Selector.TagSelector;
+import org.example.Utils.GetBeanUtil;
 import org.htmlunit.html.DomElement;
 import org.htmlunit.html.HtmlPage;
 import org.jsoup.Jsoup;
@@ -48,13 +50,7 @@ public class TrapTag implements TagSelector {
 
     private void doTrParser(Element element){
         Elements elementsByTag = element.getElementsByTag(TD);
-        System.out.println("排名:"+elementsByTag.get(0).text());
-        System.out.println("卡名:"+elementsByTag.get(1).getElementsByTag("a").text());
-        System.out.println("使用量:"+elementsByTag.get(2).text());
-        System.out.println("使用率:"+elementsByTag.get(3).text());
-        System.out.println("投入1:"+elementsByTag.get(4).text());
-        System.out.println("投入2:"+elementsByTag.get(5).text());
-        System.out.println("投入3:"+elementsByTag.get(6).text());
+        System.out.println(GetBeanUtil.build(elementsByTag, CardType.TRAP));
 
 
     }
