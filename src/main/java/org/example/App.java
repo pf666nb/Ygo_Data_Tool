@@ -52,25 +52,5 @@ public class App
 
 
 
-
-//        String pageXml = page.asXml();//直接将加载完成的页面转换成xml格式的字符串
-//        System.out.println(pageXml);
-//        //TODO 下面的代码就是对字符串的操作了,常规的爬虫操作,用到了比较好用的Jsoup库
-//
-//        Document document = Jsoup.parse(pageXml);//获取html文档
-//        List<Element> infoListEle = document.getElementsByClass("tab-img");
-//
-//        List<DomElement> moster = page.getByXPath("//*[@id=\"app\"]/div[2]/div/div/div[1]/div[2]/ul/li[2]/a");
-//        List<DomElement> tarp = page.getByXPath("//*[@id=\"app\"]/div[2]/div/div/div[1]/div[2]/ul/li[4]/a");
-//
-//        tarp.get(0).click();
-//        final DomNodeList<DomElement> imgs = page.getElementsByTagName("img");
-//
-//        List<Element> infoListEles = document.getElementById("trap").getElementsByTag("tr");//获取元素节点等
-//        infoListEles.forEach(element -> {
-//
-//            System.out.println(element.getElementsByTag("a").text());
-//
-//        });
     }
 }
