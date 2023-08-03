@@ -1,11 +1,14 @@
 package org.example;
 
+import org.example.Bean.DataBean;
 import org.example.Selector.Imp.*;
+import org.example.Utils.GenerateYgoPieChartUtil;
 import org.htmlunit.BrowserVersion;
 import org.htmlunit.NicelyResynchronizingAjaxController;
 import org.htmlunit.WebClient;
 import org.htmlunit.html.HtmlPage;
 import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -14,8 +17,8 @@ import java.io.IOException;
  */
 public class App
 {
-    public static void main( String[] args ) throws IOException {
-        final WebClient webClient = new WebClient(BrowserVersion.CHROME);//新建一个模拟谷歌Chrome浏览器的浏览器客户端对象
+    public static void main( String[] args ) throws Exception {
+        WebClient webClient = new WebClient(BrowserVersion.CHROME);//新建一个模拟谷歌Chrome浏览器的浏览器客户端对象
 
         webClient.getOptions().setThrowExceptionOnScriptError(false);//当JS执行出错的时候是否抛出异常, 这里选择不需要
         webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);//当HTTP的状态非200时是否抛出异常, 这里选择不需要
@@ -46,10 +49,10 @@ public class App
 //        spellTag.SelectTag(page);
 //        spellTag.getElements(page);
 
-        ExTag trapTag = new ExTag();
+        DeckTag trapTag = new DeckTag();
         trapTag.SelectTag(page);
-        trapTag.getElements(page);
-
+        List<DataBean> elements = trapTag.getElements(page);
+        GenerateYgoPieChartUtil.generateYgoPie(elements);
 
 
     }
