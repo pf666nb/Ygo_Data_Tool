@@ -17,7 +17,9 @@ import java.util.stream.Collectors;
  */
 public class GenerateYgoPieChartUtil {
 
-    private static final String imagePath = "/Users/apple/Desktop";
+
+    //饼图生成的本地地址
+    private static final String imagePath = "D:\\";
 
     public static  void generateYgoPie(List<DataBean> beanList) throws Exception {
         //获取百分比的集合
@@ -29,9 +31,9 @@ public class GenerateYgoPieChartUtil {
         //删除对应%然后再放回去
         List<Object> collects = collect.stream().map(s -> s.substring(0, s.length() - 1)).collect(Collectors.toList());
 
-        //处理集合，只取前9
-        List<Object> values = collects.subList(0, 8);
-        List<String> keys = name.subList(0, 8);
+        //处理集合，只取前5
+        List<Object> values = collects.subList(0, 5);
+        List<String> keys = name.subList(0, 5);
         //计算百分比
         double other = 100.0;
         for (Object s : collects) {

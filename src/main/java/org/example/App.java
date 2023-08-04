@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.Bean.DataBean;
+import org.example.Config.WebClientConfig;
 import org.example.Selector.Imp.*;
 import org.example.Utils.GenerateYgoPieChartUtil;
 import org.htmlunit.BrowserVersion;
@@ -18,18 +19,10 @@ import java.util.List;
 public class App
 {
     public static void main( String[] args ) throws Exception {
-        WebClient webClient = new WebClient(BrowserVersion.CHROME);//新建一个模拟谷歌Chrome浏览器的浏览器客户端对象
-
-        webClient.getOptions().setThrowExceptionOnScriptError(false);//当JS执行出错的时候是否抛出异常, 这里选择不需要
-        webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);//当HTTP的状态非200时是否抛出异常, 这里选择不需要
-        webClient.getOptions().setActiveXNative(false);
-        webClient.getOptions().setCssEnabled(false);//是否启用CSS, 因为不需要展现页面, 所以不需要启用
-        webClient.getOptions().setJavaScriptEnabled(true); //很重要，启用JS
-        webClient.setAjaxController(new NicelyResynchronizingAjaxController());//很重要，设置支持AJAX
-
+        WebClient webClient = WebClientConfig.GetClient();
         HtmlPage page = null;
         try {
-            page = webClient.getPage("https://mycard.moe/ygopro/arena/#/cards");//尝试加载上面图片例子给出的网页
+            page = webClient.getPage("https://mycard.moe/ygopro/arena/#/cards");
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
@@ -49,7 +42,7 @@ public class App
 //        spellTag.SelectTag(page);
 //        spellTag.getElements(page);
 
-        DeckTag trapTag = new DeckTag();
+        ExTag trapTag = new ExTag();
         trapTag.SelectTag(page);
         List<DataBean> elements = trapTag.getElements(page);
         GenerateYgoPieChartUtil.generateYgoPie(elements);
